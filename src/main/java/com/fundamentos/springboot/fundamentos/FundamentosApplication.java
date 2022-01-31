@@ -1,6 +1,7 @@
 package com.fundamentos.springboot.fundamentos;
 
 import com.fundamentos.springboot.fundamentos.bean.MyBeanWithDependency;
+import com.fundamentos.springboot.fundamentos.bean.MyBeanWithProperties;
 import com.fundamentos.springboot.fundamentos.bean.Mybean;
 import com.fundamentos.springboot.fundamentos.component.ComponetDepency;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,11 +15,13 @@ public class FundamentosApplication implements CommandLineRunner {
 	private ComponetDepency componetDepency;
 	private Mybean myBean;
 	private MyBeanWithDependency myBeanWithDependency;
+	private MyBeanWithProperties myBeanWithProperties;
 
-	public FundamentosApplication(@Qualifier("componenTwoImplement") ComponetDepency componetDepency, Mybean myBean,MyBeanWithDependency myBeanWithDependency){
+	public FundamentosApplication(@Qualifier("componenTwoImplement") ComponetDepency componetDepency, Mybean myBean,MyBeanWithDependency myBeanWithDependency, MyBeanWithProperties myBeanWithProperties){
 		this.componetDepency = componetDepency;
 		this.myBean = myBean;
 		this.myBeanWithDependency = myBeanWithDependency;
+		this.myBeanWithProperties = myBeanWithProperties;
 	}
 
 	public static void main(String[] args) {
@@ -31,5 +34,6 @@ public class FundamentosApplication implements CommandLineRunner {
 		componetDepency.saludar();
 		myBean.print();
 		myBeanWithDependency.printWithDependency();
+		System.out.println(myBeanWithProperties.function());
 	}
 }
