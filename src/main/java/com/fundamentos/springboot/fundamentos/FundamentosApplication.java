@@ -90,11 +90,15 @@ public class FundamentosApplication implements CommandLineRunner {
 				.stream()
 				.forEach(user -> LOGGER.info("findByNameContainOrderByIdDesc"+ user));
 
+		/*LOGGER.info("El usuario del named parameter es " +
+				userRepository.getAllByBirthDateAndEmail(
+				LocalDate.of(2022,1,31),"jsotto@email.com")
+				.orElseThrow(()->new RuntimeException("No se encontro el usuario con named parametro")));*/
 
 	}
 
 	private void saveUsersInDataBase(){
-		User user1 = new User("Jonathan","jsotto@email.com", LocalDate.of(2022,01,31));
+		User user1 = new User("Jonathan","jsotto@email.com", LocalDate.of(2022,1,31));
 		User user2 = new User("Saydy","sguzman@email.com", LocalDate.of(2022,11,25));
 		User user3 = new User("user3","user3@email.com", LocalDate.of(2022,03,3));
 		User user4 = new User("user4","user4@email.com", LocalDate.of(2020,04,5));
