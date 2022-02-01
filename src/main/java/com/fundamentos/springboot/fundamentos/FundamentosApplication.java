@@ -69,13 +69,35 @@ public class FundamentosApplication implements CommandLineRunner {
 				("jsotto@email.com","Jonathan").orElseThrow(()-> new RuntimeException
 				("No se encontro el usuario con el metodo findEmailAndMail")));
 
+		userRepository.findByNameLike("%u%")
+				.stream()
+				.forEach(user -> LOGGER.info("User find by name like" + user));
+
+		userRepository.findByNameOrEmail("null","user5@email.com")
+				.stream()
+				.forEach(user -> LOGGER.info("User find by name or email"+user));
+
+		userRepository.findByBirthDateBetween(LocalDate.of(2020,3,2),
+				LocalDate.of(2021,5,30))
+				.stream()
+				.forEach(user -> LOGGER.info("Usuarios con QueryMethod findByBirthDateBetween"+user));
+
+		userRepository.findByNameLikeOrderByIdDesc("%user%")
+				.stream()
+				.forEach(user -> LOGGER.info("Usuario encontrado con nombre y ordenado"+ user));
+
+		userRepository.findByNameContainingOrderByIdDesc("user")
+				.stream()
+				.forEach(user -> LOGGER.info("findByNameContainOrderByIdDesc"+ user));
+
+
 	}
 
 	private void saveUsersInDataBase(){
 		User user1 = new User("Jonathan","jsotto@email.com", LocalDate.of(2022,01,31));
 		User user2 = new User("Saydy","sguzman@email.com", LocalDate.of(2022,11,25));
 		User user3 = new User("user3","user3@email.com", LocalDate.of(2022,03,3));
-		User user4 = new User("user4","user4@email.com", LocalDate.of(2022,04,5));
+		User user4 = new User("user4","user4@email.com", LocalDate.of(2020,04,5));
 		User user5 = new User("user5","user5@email.com", LocalDate.of(2022,05,20));
 		User user6 = new User("user6","user6@email.com", LocalDate.of(2022,06,26));
 		User user7 = new User("user7","user7@email.com", LocalDate.of(2022,07,29));
